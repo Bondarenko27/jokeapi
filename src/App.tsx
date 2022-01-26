@@ -18,6 +18,7 @@ interface joke{
 }
 function App() {
 const [jokes,setJokes]= React.useState<joke|null>(null)
+const [two,setTwo]= React.useState<joke|null>(null)
  
 const FetchJoke = async()=> {
 setJokes(null);
@@ -25,6 +26,7 @@ const Fetch= async ()=> {
 const resp = await fetch(" https://v2.jokeapi.dev/joke/programming",{
   method:"GET"
 })
+
 .then(function(response) {
   return response.json();
   })
@@ -32,22 +34,45 @@ const resp = await fetch(" https://v2.jokeapi.dev/joke/programming",{
     console.log(response)
     return response
 });
-return resp
+return resp;
+
 }
 const res = await Fetch();
 setJokes(res)
 }
 
 
+const FetchSecond = async()=> {
+  setTwo(null);
+  const Fetch= async ()=> {
+  const resp = await fetch(" https://v2.jokeapi.dev/joke/programming",{
+    method:"GET"
+  })
+  .then(function(response) {
+    return response.json();
+    })
+    .then((response)=>{
+      console.log(response)
+      return response
+  });
+  return resp
+  }
+  const res = await Fetch();
+  setTwo(res)
+  }
+
+
 
 
   return (
     <div className="App">
-       { jokes !== null ? 
+       { jokes && two !== null ?
       <><div className='joke'> {jokes.setup}</div><div className='jokeres'> {jokes.delivery}</div>
-      <div className='jokeres'> {jokes.joke}</div></>
+      <div className='jokeres'> {jokes.joke}</div>
+      <div className='jok'> {two.setup}</div><div className='jokere'> {two.delivery}</div>
+      <div className='jokere'> {two.joke}</div></>
       : null}
-     <div><button className='submit'onClick={() => FetchJoke()}>Submit</button></div>
+     <div><button className='submit'onClick={() =>{FetchJoke();FetchSecond()} }>Submit</button></div>
     
     </div>
   );

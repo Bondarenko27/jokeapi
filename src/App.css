@@ -28,3 +28,20 @@
   margin-top: 20px;
   background-color: rgb(183, 200, 231);
 }
+.jok {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+ font-size: xx-large;
+ background-color: rgb(231, 183, 215);
+
+}
+.jokere{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
+  margin-top: 20px;
+  background-color: rgb(231, 183, 215);
+}
